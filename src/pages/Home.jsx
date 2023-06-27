@@ -1,8 +1,10 @@
+import CourseCard from "../components/CourseCard/CourseCard"
 
 const Home = () =>{
     return(
         <div>
-            <h1>HOME</h1>
+            <h1>Dashboard</h1>
+            <CourseCard />
         </div>
     )
 }

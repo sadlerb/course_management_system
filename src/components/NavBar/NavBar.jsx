@@ -9,8 +9,8 @@ import "./NavBar.scss"
 const NavBar = () => {
     return (
         <div className="nav-container">
-            <img src={logo} alt="logo" />
-            <img src={userIcon} alt="Icon" />
+            <img src={logo} alt="company logo" />
+            <img src={userIcon} alt="account icon" />
             <nav>
                 <ul>
                     <li>
