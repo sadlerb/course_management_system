@@ -1,0 +1,27 @@
+button {
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  &.default {
+    background: #dd4d1e;
+    border: none;
+    color: white;
+    &:hover {
+        background: #a73a16;
+    }
+
+  }
+  
+  &.outline {
+    background: #E6F1FE;
+    border: solid #dd4d1e;
+    color: #dd4d1e;
+    &:hover{
+        border: none;
+        color: white;
+        background: #dd4d1e;
+    }
+  }
+}
+

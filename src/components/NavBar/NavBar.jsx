@@ -22,7 +22,7 @@ const NavBar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/courses">
+                        <NavLink to="/admin/courses">
                             <div>
                                 <CoursesIcon fill="white" className="nav-icons" />
                                 <p>All Courses</p>

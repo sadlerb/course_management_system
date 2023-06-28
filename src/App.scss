@@ -1,8 +1,9 @@
 .App{
   display: grid;
-  grid-template-columns: 200px 1fr;
-  height: 100vh;
+  grid-template-columns: 1fr 5fr;
   background-color: #E6F1FE;
+  min-height: 100vh;
+  height: fit-content;
   .content{
     margin: 2rem 3rem;
   }

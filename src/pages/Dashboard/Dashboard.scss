@@ -1,0 +1,32 @@
+.dashboard-container{
+    .dashboard-header{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        justify-content: center;
+        align-items: center;
+        
+        input{
+            height: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #AEAEAE;
+            background: #FFFCFC;
+            padding:  0 1.5rem;
+            background-image: url("../../assets/search.svg") ;
+            background-position: 0px 0px;
+            background-repeat: no-repeat;
+            background-size: 25px;
+            
+        }
+    }
+
+    .course-card-container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+        div{
+            flex-basis: 48%
+        }
+    }
+}
