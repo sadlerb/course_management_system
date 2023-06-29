@@ -1,16 +1,17 @@
 import "./Comment.scss";
 import { ReactComponent as UserIcon } from "../../assets/comment_user.svg"
 
-const Comment = () => {
+const Comment = ({comment_details}) => {
+    const {user_name,user_rating,date_created,user_comment} = comment_details;
     return (
         <div className="comment-container">
             <div className="comment-header">
                 <UserIcon />
                 <div className="comment-user-details">
-                    <p className="user-name">John Doe <span className="rating">rating</span></p>
-                    <p className="comment-date">July 4,2023</p>
+                    <p className="user-name">{user_name}<span className="rating">{user_rating}</span></p>
+                    <p className="comment-date">{date_created}</p>
                 </div>
-                <p>Great course. I learned a lot, but I had some trouble keeping up during pratical stuff</p>
+                <p>{user_comment}</p>
             </div>
 
 

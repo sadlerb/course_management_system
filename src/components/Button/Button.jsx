@@ -1,8 +1,8 @@
 import "./Button.scss"
 
-const Button = ({ type, text }) => {
+const Button = ({ type, text,onClickHandeler }) => {
     return (
-        <button className={type || "default"}>{text}</button>
+        <button className={type || "default"} onClick={onClickHandeler} >{text}</button>
 
     )
 }

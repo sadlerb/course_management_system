@@ -1,0 +1,13 @@
+.stars {
+  input[type="radio"] {
+    display: none;
+  }
+  label{
+      svg {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+      }
+  }
+
+}
