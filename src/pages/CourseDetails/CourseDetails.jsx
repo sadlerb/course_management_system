@@ -2,15 +2,16 @@ import './CourseDetails.scss';
 
 import Button from '../../components/Button/Button';
 import Comment from '../../components/Comment/Comment';
+import ReviewForm from '../../components/ReviewForm/ReviewForm';
+import { ReactComponent as ExternalLink } from "../../assets/external_link.svg"
 import { ReactComponent as RatingStar } from "../../assets/rating_star.svg"
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import ReviewForm from '../../components/ReviewForm/ReviewForm';
 
 
 const CourseDetails = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const { title, externalLink, id, rating, tags, comments } = useLocation().state.state;
+    const { title, externalLink, rating, comments } = useLocation().state.state;
 
 
     return (
@@ -21,7 +22,12 @@ const CourseDetails = () => {
             </div>
 
             <div className="course-grid">
-                <div className="course-image"></div>
+                <div className="course-image">
+                    <a href={externalLink} target="_blank" rel="noopener noreferrer">
+
+                        <ExternalLink />
+                    </a>
+                </div>
                 <div className="review-section">
                     {isFormOpen
                         ? <ReviewForm setIsFormOpen={setIsFormOpen} />
