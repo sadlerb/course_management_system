@@ -53,15 +53,34 @@ router.put("/:id", async (req, res) => {
 });
 
 router.put("/:id/comment", async (req, res) => {
+  // Add new comment to comments array in document
   const query = { _id: new ObjectId(req.params.id) };
-  const updates = {
+  const pushUpdateToArray = {
     $push: {
-      comments: req.body
+      comments: req.body,
     },
   };
-  let collection = await db.collection("courses");
-  const result = await collection.updateOne(query, updates);
-  res.send(result).status(200);
+  //Update new average for course
+  const updateCourseRatings = [
+    {
+      $set: {
+        rating: {
+          $avg: "$comments.user_rating",
+        },
+      },
+    },
+  ];
+
+  try {
+    let collection = await db.collection("courses");
+    await collection.updateOne(query, pushUpdateToArray);
+
+    const result = await collection.updateOne(query, updateCourseRatings);
+    res.send(result).status(200);
+  
+  } catch (error) {
+    res.send(error).status(400);
+  }
 });
 
 router.delete("/:id", async (req, res) => {
@@ -71,6 +90,23 @@ router.delete("/:id", async (req, res) => {
   const result = await collection.deleteOne(query);
 
   res.send(result).status(200);
+});
+
+router.get("/test/test", async (req, res) => {
+  let collection = await db.collection("courses");
+  const query = { _id: new ObjectId("649dd06079f072f78d9d05fc") };
+  const updateRatingsQuery = [
+    {
+      $set: {
+        rating: {
+          $avg: "$comments.user_rating",
+        },
+      },
+    },
+  ];
+  const result = collection.updateOne(query, updateRatingsQuery);
+
+  res.send(result);
 });
 
 export default router;
