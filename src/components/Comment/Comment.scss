@@ -13,9 +13,17 @@
             justify-content: flex-start;
           
             .user-name{
+                display: flex;
+                flex-direction: row;
                 font-weight: bold;
                 margin: 0;
-                
+                .rating{
+                    margin: 0rem .5 rem;
+                    svg{
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
             }
 
             .comment-date{

@@ -5,23 +5,30 @@ import Courses from "./pages/Courses";
 import Manage from "./pages/Manage";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import CourseDetails from "./pages/CourseDetails/CourseDetails.jsx";
+
 import "./App.scss";
+import { UserProvider } from "./context/UserContext.jsx";
+
 
 function App() {
+
+
   return (
     <div className="App">
-      <BrowserRouter>
-      <NavBar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="admin/courses" element={<Courses />} />
-          <Route path="manage" element={<Manage />} />
-          <Route path="/course/:id" element={<CourseDetails />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <NavBar />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="admin/courses" element={<Courses />} />
+              <Route path="manage" element={<Manage />} />
+              <Route path="/course/:id" element={<CourseDetails />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }

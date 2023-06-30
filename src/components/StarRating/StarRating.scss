@@ -10,4 +10,19 @@
       }
   }
 
+  
 }
+.stars[disabled]{
+
+  label{
+    svg {
+      cursor: default;
+      pointer-events: none;
+      
+    }
+}
+
+ 
+}
+
+

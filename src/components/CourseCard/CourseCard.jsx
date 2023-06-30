@@ -22,7 +22,7 @@ const CourseCard = ({course}) => {
             <div className="course-card-footer">
                 <h3>{course.title}</h3>
                 <div className="button-container">
-                    <Link to={`/course/${course.id}`} state={{state:course}}>
+                    <Link to={`/course/${course._id}`}>
                         <button className='icon-button'><FullScreenIcon /></button>
                     </Link>
                     <button className='icon-button' onClick={() => openInNewTab(course.externalLink)}><ExternalLinkIcon /></button>

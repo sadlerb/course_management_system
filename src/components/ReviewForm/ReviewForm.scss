@@ -1,9 +1,13 @@
 .review-form {
+
   form {
+    display: flex;
+    flex-direction: column;
     .form-header {
       display: grid;
       grid-template-columns: 1fr 5fr;
       padding: 5px 0px;
+      
     }
 
     label {
