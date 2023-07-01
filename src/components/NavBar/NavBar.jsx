@@ -33,7 +33,7 @@ const NavBar = () => {
                         <NavLink to="/manage">
                             <div>
                                 <ManageIcon fill="white" className="nav-icons" />
-                                <p>Management</p>
+                                <p>Manage Courses</p>
                             </div>
                         </NavLink>
                     </li>
