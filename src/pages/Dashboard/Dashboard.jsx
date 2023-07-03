@@ -27,10 +27,9 @@ const Dashboard = () => {
 
         }
         getCourses();
-  
 
-    },
-        [courseList.length]);
+
+    },[courseList.length]);
 
 
 

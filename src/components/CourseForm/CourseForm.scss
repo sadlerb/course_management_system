@@ -13,12 +13,14 @@
   justify-content: center;
 
   .background-container {
+    overflow-y: scroll;
+
     background-color: white;
     width: 30vw;
     height: 50vh;
     border-radius: 10px;
     padding: 2rem;
-    margin:0;
+    margin: 0;
     form {
       display: flex;
       justify-content: start;
@@ -26,15 +28,14 @@
       align-items: center;
       height: 100%;
 
-      label{
+      label {
         width: 80%;
-
       }
-      input{
+      input {
         width: 80%;
         margin-bottom: 1rem;
       }
-      
+
       .button-area {
         display: grid;
         justify-items: center;
@@ -68,6 +69,48 @@
             background-color: rgb(13, 103, 13);
           }
         }
+      }
+      .tags-section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        .tag-input{
+          display: grid;
+          grid-template-columns: 10fr 1fr;
+          justify-items: center;
+          
+        }
+
+        .tag-container{
+          display: flex;
+          flex-wrap: wrap;
+          .tag{
+            background-color: #DD4D1E;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            width: fit-content;
+            margin: .1rem .1rem;
+            padding: 0 5px;
+            svg{
+              width: 14px;
+              height: 14px;
+              fill: white;
+            }
+          }
+        }
+
+        justify-content: center;
+        .tag-input{
+          
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+        
       }
     }
   }

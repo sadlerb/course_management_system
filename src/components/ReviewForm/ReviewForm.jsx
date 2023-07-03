@@ -30,7 +30,7 @@ const ReviewForm = ({ setIsFormOpen, course_id,disabled}) => {
 
        
         await fetch(`http://localhost:5050/course/${course_id}/comment`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },

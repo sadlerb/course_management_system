@@ -25,11 +25,12 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   let newDocument = {
     title: req.body.title,
-    externalLink: req.body.link,
+    externalLink: req.body.externalLink,
     tags: req.body.tags,
     rating: 0,
     comments: [],
   };
+ 
   let collection = await db.collection("courses");
   const result = await collection.insertOne(newDocument);
   res.send(result).status(204);
@@ -40,7 +41,7 @@ router.put("/:id", async (req, res) => {
   const updates = {
     $set: {
       title: req.body.title,
-      externalLink: req.body.link,
+      externalLink: req.body.externalLink,
       tags: req.body.tags,
       rating: req.body.rating,
       comments: req.body.comments,
@@ -52,7 +53,7 @@ router.put("/:id", async (req, res) => {
   res.send(result).status(200);
 });
 
-router.put("/:id/comment", async (req, res) => {
+router.patch("/:id/comment", async (req, res) => {
   // Add new comment to comments array in document
   const query = { _id: new ObjectId(req.params.id) };
   const pushUpdateToArray = {
@@ -83,13 +84,24 @@ router.put("/:id/comment", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
-  const query = { _id: new ObjectId(req.params.id) };
+router.delete("/", async (req, res) => {
+  var ids = [] 
 
-  let collection = await db.collection("courses");
-  const result = await collection.deleteOne(query);
+  req.body.forEach(element => {
+    ids.push(new ObjectId(element))
+  });
+ 
+  const query = { _id: {$in:ids} };
+  try{
+    let collection = await db.collection("courses");
+    const result = await collection.deleteMany(query);
+    res.send(result).status(200);
 
-  res.send(result).status(200);
+
+  }catch (error){
+    res.send(error).status(400)
+  }
+
 });
 
 router.get("/test/test", async (req, res) => {
