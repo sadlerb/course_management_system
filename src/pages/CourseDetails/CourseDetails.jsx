@@ -26,7 +26,7 @@ const CourseDetails = () => {
 
     useEffect(() => {
         const getCourse = async () => {
-            const response = await fetch(`http://localhost:5050/course/${id}`);
+            const response = await fetch(`http://localhost:5050/courses/${id}`);
             if (!response.ok) {
                 console.log(response.statusText);
                 setIsLoading(false)
@@ -78,11 +78,11 @@ const CourseDetails = () => {
                     <br />
                     <div className="comment-section">
                         <h4>Comments ({courseDetails.comments.length})</h4>
-                        {courseDetails.comments.map((comment_details) => {
+                        {courseDetails.comments.map((comment_details,index) => {
 
                             return (
 
-                                <Comment comment_details={comment_details} key={comment_details.user_id} />
+                                <Comment comment_details={comment_details} key={index} />
                             )
 
                         })}

@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getCourses = async () => {
-            const response = await fetch("http://localhost:5050/course");
+            const response = await fetch("http://localhost:5050/courses");
             if (!response.ok) {
                 console.log(response.statusText);
                 setIsLoading(false);

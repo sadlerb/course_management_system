@@ -104,21 +104,5 @@ router.delete("/", async (req, res) => {
 
 });
 
-router.get("/test/test", async (req, res) => {
-  let collection = await db.collection("courses");
-  const query = { _id: new ObjectId("649dd06079f072f78d9d05fc") };
-  const updateRatingsQuery = [
-    {
-      $set: {
-        rating: {
-          $avg: "$comments.user_rating",
-        },
-      },
-    },
-  ];
-  const result = collection.updateOne(query, updateRatingsQuery);
-
-  res.send(result);
-});
 
 export default router;
