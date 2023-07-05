@@ -9,6 +9,20 @@ router.get("/", async (req, res) => {
   let results = await collection.find({}).toArray();
   res.send(results).status(200);
 });
+// Get course by role
+router.get("/department/:department/role/:role", async (req, res) => {
+  const role = req.params.role
+  const department = req.params.department
+  let collection = await db.collection("courses");
+  let results = []
+  if (role === 'admin'){
+     results = await collection.find({}).toArray();
+  }
+  else{
+     results = await collection.find({"department":department}).toArray();
+  }
+  res.send(results).status(200);
+});
 
 router.get("/:id", async (req, res) => {
   let collection = await db.collection("courses");
@@ -27,6 +41,7 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     externalLink: req.body.externalLink,
     tags: req.body.tags,
+    department:req.body.department,
     rating: 0,
     comments: [],
   };
@@ -45,6 +60,7 @@ router.put("/:id", async (req, res) => {
       tags: req.body.tags,
       rating: req.body.rating,
       comments: req.body.comments,
+      department:req.body.department
     },
   };
 
@@ -56,6 +72,41 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id/comment", async (req, res) => {
   // Add new comment to comments array in document
   const query = { _id: new ObjectId(req.params.id) };
+  req.body.user_id = new ObjectId(req.body.user_id)
+  const pushUpdateToArray = {
+    $push: {
+      comments: req.body,
+    },
+  };
+  //Update new average for course
+  const updateCourseRatings = [
+    {
+      $set: {
+        rating: {
+          $avg: "$comments.user_rating",
+        },
+      },
+    },
+  ];
+
+  try {
+    let collection = await db.collection("courses");
+    await collection.updateOne(query, pushUpdateToArray);
+
+    const result = await collection.updateOne(query, updateCourseRatings);
+    res.send(result).status(200);
+  
+  } catch (error) {
+    res.send(error).status(400);
+  }
+});
+router.patch("/:id/comment/:userId", async (req, res) => {
+  // Add new comment to comments array in document
+  const query = { _id: new ObjectId(req.params.id) };
+  const userID = {_id: new ObjectId(req.params.userId)}
+  req.body.user_id = new ObjectId(req.body.user_id)
+
+  // find comment by user id and update it 
   const pushUpdateToArray = {
     $push: {
       comments: req.body,
