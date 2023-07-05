@@ -7,13 +7,14 @@ import { ReactComponent as AddCircle } from "../../assets/add_circle.svg";
 import { ReactComponent as Close } from "../../assets/close.svg";
 
 
-const CourseForm = ({ closeForm, data, getData, mode }) => {
+const CourseForm = ({ closeForm, data, getData, mode, departmentData }) => {
     const isUpdateMode = ((Object.keys(data).length === 0) ? false : true)
     const initalInputs = {
         "title": data.title || "",
         "externalLink": data.externalLink || "",
         "tags": data.tags || [],
-        "current_tag": ""
+        "current_tag": "",
+        "department": data.department || ""
     }
     const [formInput, setFormInput] = useState(initalInputs);
 
@@ -117,13 +118,21 @@ const CourseForm = ({ closeForm, data, getData, mode }) => {
                                 <AddCircle onClick={addTag} />
                             </div>
                         </div>
-
-
-
-                    </>) : (<>
-                        <label>Title</label>
-                        <input type="text" name="title" value={formInput.title} onChange={handleChange} />
-                    </>)}
+                        <label>Department</label>
+                        <select name="department" onChange={handleChange} defaultValue={initalInputs.department}>
+                            {departmentData.map(({ title, _id }) => {
+                                return (
+                                    <option value={title}>{title}</option>
+                                )
+                            })}
+                        </select>
+                    </>
+                    ) : (
+                        <>
+                            <label>Title</label>
+                            <input type="text" name="title" value={formInput.title} onChange={handleChange} />
+                        </>
+                    )}
 
                     <div className="button-area">
                         <Button type={"cancel"} onClickHandeler={() => closeForm(false)} text={"Close"}></Button>

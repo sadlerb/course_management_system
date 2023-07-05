@@ -2,11 +2,12 @@
 import CourseCard from "../../components/CourseCard/CourseCard";
 import "./Dashboard.scss"
 import Spinner from "../../components/Spinner/Spinner";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/UserContext";
 
 const Dashboard = () => {
 
-
+    const {currentUser} = useContext(UserContext);
     const [courseList, setCourseList] = useState([]);
     const [filteredList, setFilteredList] = useState(courseList)
     const [filter, setFilter] = useState('');
@@ -14,7 +15,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getCourses = async () => {
-            const response = await fetch("http://localhost:5050/courses");
+            const response = await fetch(`http://localhost:5050/courses/department/${currentUser.department}/role/${currentUser.role}`);
             if (!response.ok) {
                 console.log(response.statusText);
                 setIsLoading(false);
@@ -27,7 +28,7 @@ const Dashboard = () => {
 
         }
         getCourses();
-
+        
 
     },[courseList.length]);
 
@@ -55,13 +56,13 @@ const Dashboard = () => {
                     </div>
 
                     <div className="course-card-container">
-                        {filteredList.map((course) => {
+                        {filteredList.length>0?(filteredList.map((course) => {
 
                             return (
                                 <CourseCard course={course} key={`"${course._id}"`} />
                             )
 
-                        })}
+                        })):(<p>There are no courses avaliable for your role</p>)}
                     </div>
                 </div>
             )}

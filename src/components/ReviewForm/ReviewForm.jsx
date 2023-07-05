@@ -6,15 +6,14 @@ import { UserContext } from "../../context/UserContext";
 import "./ReviewForm.scss"
 import StarRating from "../StarRating/StarRating";
 
-const ReviewForm = ({ setIsFormOpen, course_id,disabled}) => {
+const ReviewForm = ({ setIsFormOpen, course_id, disabled }) => {
     const { currentUser } = useContext(UserContext)
     const [input, setInputs] = useState({ user_comment: "", time_taken: 0, user_rating: 0 })
 
     const handleChange = (event) => {
         const name = event.target.name;
-        const value = event.target.value; 
+        const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
-
 
     }
 
@@ -22,14 +21,13 @@ const ReviewForm = ({ setIsFormOpen, course_id,disabled}) => {
         event.preventDefault();
         const currentDate = new Date();
 
-       input.time_taken = parseInt(input.time_taken)
-       input.user_rating = parseInt(input.user_rating)
+        input.time_taken = parseInt(input.time_taken)
+        input.user_rating = parseInt(input.user_rating)
 
+        
+        const userComment = { ...input, user_name: currentUser.name, user_id: currentUser._id, date_created: currentDate }
 
-        const userComment = { ...input, user_name: currentUser.user_name, user_id: currentUser.user_id, date_created: currentDate }
-
-       
-        await fetch(`http://localhost:5050/course/${course_id}/comment`, {
+        await fetch(`http://localhost:5050/courses/${course_id}/comment`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -41,7 +39,7 @@ const ReviewForm = ({ setIsFormOpen, course_id,disabled}) => {
                 return;
             });
         setInputs({ user_comment: "", time_taken: 0, user_rating: 0 });
-        window.location.reload();
+
     }
 
     const handleCancel = (event) => {
@@ -60,7 +58,7 @@ const ReviewForm = ({ setIsFormOpen, course_id,disabled}) => {
                 <label>
                     Time Taken to Complete
                     <br />
-                    <input type="number" name="time_taken" onChange={handleChange} vlaue={input.time_taken} step={0.1} min={0} /> <span>hours</span>
+                    <input type="number" name="time_taken" onChange={handleChange} value={input.time_taken} step={0.1} min={0} /> <span>hours</span>
                 </label>
                 <textarea name="user_comment" id="" cols="30" rows="5" placeholder="Write a Comment" onChange={handleChange} value={input.user_comment}></textarea>
                 <div className="button-area">

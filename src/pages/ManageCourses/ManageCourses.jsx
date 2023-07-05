@@ -118,7 +118,7 @@ const ManageCourses = () => {
             <div className="header">
                 <h1>Manage Courses</h1>
             </div>
-            {isCourseFormOpen && <CourseForm closeForm={closeForm} data={selectedData} getData={getData} mode={selectedOption} />}
+            {isCourseFormOpen && <CourseForm closeForm={closeForm} data={selectedData} getData={getData} mode={selectedOption} departmentData={departmentData}/>}
             <div className="courses-container">
                 <div className="header">
                     <div className="radio-buttons">
