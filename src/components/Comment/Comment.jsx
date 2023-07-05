@@ -9,7 +9,7 @@ const Comment = ({comment_details}) => {
             <div className="comment-header">
                 <UserIcon />
                 <div className="comment-user-details">
-                    <p className="user-name">{user_name}<span className="rating"><StarRating user_rating={user_rating} isDisabled={true}/></span></p>
+                    <p className="user-name">{user_name}<span className="rating"><StarRating user_rating={user_rating} isDisabled={true} key={user_rating}/></span></p>
                     <p className="comment-date">{date_created}</p>
                 </div>
                 <p>{user_comment}</p>

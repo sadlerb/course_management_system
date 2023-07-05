@@ -11,15 +11,14 @@ router.get("/", async (req, res) => {
 });
 // Get course by role
 router.get("/department/:department/role/:role", async (req, res) => {
-  const role = req.params.role
-  const department = req.params.department
+  const role = req.params.role;
+  const department = req.params.department;
   let collection = await db.collection("courses");
-  let results = []
-  if (role === 'admin'){
-     results = await collection.find({}).toArray();
-  }
-  else{
-     results = await collection.find({"department":department}).toArray();
+  let results = [];
+  if (role === "admin") {
+    results = await collection.find({}).toArray();
+  } else {
+    results = await collection.find({ department: department }).toArray();
   }
   res.send(results).status(200);
 });
@@ -41,11 +40,11 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     externalLink: req.body.externalLink,
     tags: req.body.tags,
-    department:req.body.department,
+    department: req.body.department,
     rating: 0,
     comments: [],
   };
- 
+
   let collection = await db.collection("courses");
   const result = await collection.insertOne(newDocument);
   res.send(result).status(204);
@@ -60,7 +59,7 @@ router.put("/:id", async (req, res) => {
       tags: req.body.tags,
       rating: req.body.rating,
       comments: req.body.comments,
-      department:req.body.department
+      department: req.body.department,
     },
   };
 
@@ -72,7 +71,7 @@ router.put("/:id", async (req, res) => {
 router.patch("/:id/comment", async (req, res) => {
   // Add new comment to comments array in document
   const query = { _id: new ObjectId(req.params.id) };
-  req.body.user_id = new ObjectId(req.body.user_id)
+  req.body.user_id = new ObjectId(req.body.user_id);
   const pushUpdateToArray = {
     $push: {
       comments: req.body,
@@ -95,23 +94,15 @@ router.patch("/:id/comment", async (req, res) => {
 
     const result = await collection.updateOne(query, updateCourseRatings);
     res.send(result).status(200);
-  
   } catch (error) {
     res.send(error).status(400);
   }
 });
 router.patch("/:id/comment/:userId", async (req, res) => {
-  // Add new comment to comments array in document
-  const query = { _id: new ObjectId(req.params.id) };
-  const userID = {_id: new ObjectId(req.params.userId)}
-  req.body.user_id = new ObjectId(req.body.user_id)
+  // update existing comment with new data
+  const courseID = new ObjectId(req.params.id);
+  const userID = new ObjectId(req.params.userId) ;
 
-  // find comment by user id and update it 
-  const pushUpdateToArray = {
-    $push: {
-      comments: req.body,
-    },
-  };
   //Update new average for course
   const updateCourseRatings = [
     {
@@ -125,35 +116,33 @@ router.patch("/:id/comment/:userId", async (req, res) => {
 
   try {
     let collection = await db.collection("courses");
-    await collection.updateOne(query, pushUpdateToArray);
-
-    const result = await collection.updateOne(query, updateCourseRatings);
+    const update = await collection.updateOne(
+      { _id: courseID, "comments.user_id": userID },
+      { $set: { "comments.$.time_taken": req.body.time_taken,"comments.$.user_rating":req.body.user_rating,"comments.$.user_comment":req.body.user_comment } }
+      );
+      
+    const result = await collection.updateOne({_id:courseID}, updateCourseRatings);
     res.send(result).status(200);
-  
   } catch (error) {
     res.send(error).status(400);
   }
 });
 
 router.delete("/", async (req, res) => {
-  var ids = [] 
+  var ids = [];
 
-  req.body.forEach(element => {
-    ids.push(new ObjectId(element))
+  req.body.forEach((element) => {
+    ids.push(new ObjectId(element));
   });
- 
-  const query = { _id: {$in:ids} };
-  try{
+
+  const query = { _id: { $in: ids } };
+  try {
     let collection = await db.collection("courses");
     const result = await collection.deleteMany(query);
     res.send(result).status(200);
-
-
-  }catch (error){
-    res.send(error).status(400)
+  } catch (error) {
+    res.send(error).status(400);
   }
-
 });
-
 
 export default router;

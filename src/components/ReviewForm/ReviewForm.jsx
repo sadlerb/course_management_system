@@ -6,9 +6,11 @@ import { UserContext } from "../../context/UserContext";
 import "./ReviewForm.scss"
 import StarRating from "../StarRating/StarRating";
 
-const ReviewForm = ({ setIsFormOpen, course_id, disabled }) => {
-    const { currentUser } = useContext(UserContext)
-    const [input, setInputs] = useState({ user_comment: "", time_taken: 0, user_rating: 0 })
+const ReviewForm = ({ closeForm, course_id, disabled, data }) => {
+    const isUpdateMode = ((Object.keys(data).length === 0) ? false : true)
+    const { currentUser } = useContext(UserContext);
+    const initalInputs = { user_comment: data.user_comment || "", time_taken: data.time_taken || 0, user_rating: data.user_rating || 0 }
+    const [input, setInputs] = useState(initalInputs);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -23,28 +25,40 @@ const ReviewForm = ({ setIsFormOpen, course_id, disabled }) => {
 
         input.time_taken = parseInt(input.time_taken)
         input.user_rating = parseInt(input.user_rating)
-
-        
         const userComment = { ...input, user_name: currentUser.name, user_id: currentUser._id, date_created: currentDate }
 
-        await fetch(`http://localhost:5050/courses/${course_id}/comment`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userComment),
-        })
-            .catch(error => {
+        if (isUpdateMode) {
+            await fetch(`http://localhost:5050/courses/${course_id}/comment/${data.user_id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userComment),
+
+            }).catch(error => {
                 window.alert(error);
                 return;
             });
+        } else {
+            await fetch(`http://localhost:5050/courses/${course_id}/comment`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userComment),
+            }).catch(error => {
+                window.alert(error);
+                return;
+            });
+        }
         setInputs({ user_comment: "", time_taken: 0, user_rating: 0 });
+        closeForm();
 
     }
 
     const handleCancel = (event) => {
         event.preventDefault();
-        setIsFormOpen(false)
+        closeForm();
     }
 
     return (
@@ -52,7 +66,7 @@ const ReviewForm = ({ setIsFormOpen, course_id, disabled }) => {
             <form onSubmit={handleSubmit} disabled={disabled}>
                 <div className="form-header">
                     <UserIcon />
-                    <StarRating onChange={handleChange} vlaue={input.user_rating} />
+                    <StarRating onChange={handleChange} user_rating={input.user_rating} />
                 </div>
 
                 <label>

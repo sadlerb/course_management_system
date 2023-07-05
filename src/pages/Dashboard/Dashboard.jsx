@@ -52,7 +52,7 @@ const Dashboard = () => {
                 <div className="dashboard-container">
                     <div className="dashboard-header">
                         <h1>Dashboard</h1>
-                        <input type="text" placeholder="Search" value={filter} onChange={handleChange} />
+                        <input type="search" placeholder="Search" value={filter} onChange={handleChange} />
                     </div>
 
                     <div className="course-card-container">
@@ -62,7 +62,7 @@ const Dashboard = () => {
                                 <CourseCard course={course} key={`"${course._id}"`} />
                             )
 
-                        })):(<p>There are no courses avaliable for your role</p>)}
+                        })):(<p>There are no courses avaliable </p>)}
                     </div>
                 </div>
             )}

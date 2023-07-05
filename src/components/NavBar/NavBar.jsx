@@ -12,8 +12,11 @@ const NavBar = () => {
     const {currentUser,setCurrentUser} = useContext(UserContext);
     const logout = () =>{
         setCurrentUser(null);
+        localStorage.removeItem("current_user")
         
     }
+
+
    
     return (
         <div className="nav-container">

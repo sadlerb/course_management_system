@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const StarRating = ({ onChange, isDisabled, user_rating }) => {
 
-    const [rating, setRating] = useState(user_rating || null);
+    const [rating, setRating] = useState(user_rating || 0);
 
     const [hover, setHover] = useState(null)
 

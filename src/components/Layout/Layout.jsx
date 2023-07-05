@@ -8,7 +8,7 @@ import { UserContext } from "../../context/UserContext";
 
 const Layout = () => {
     const {currentUser} = useContext(UserContext);
-    if (!currentUser) return <Navigate to="/login"/>
+    if (currentUser === null) return <Navigate to="/login"/>
     return (
         <main>
             {< NavBar />}

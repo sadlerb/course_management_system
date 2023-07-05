@@ -19,7 +19,8 @@ const CourseDetails = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { currentUser } = useContext(UserContext);
-    const [current_user_comment,setComment] = useState()
+    const [current_user_comment, setComment] = useState();
+    const [commentData, setCommentData] = useState({});
     const [courseDetails, setCourseDetails] = useState({
         title: "",
         externalLink: "",
@@ -63,6 +64,15 @@ const CourseDetails = () => {
 
     }
 
+    const openFormWithData = (data) => {
+        setCommentData(data)
+        setIsFormOpen(true)
+    }
+
+    const closeForm = () => {
+        getCourse();
+        setIsFormOpen(false)
+    }
 
 
 
@@ -85,16 +95,16 @@ const CourseDetails = () => {
                         </div>
                         <div className="review-section">
                             {isFormOpen
-                                ? (<ReviewForm setIsFormOpen={setIsFormOpen} course_id={id} />)
+                                ? (<ReviewForm closeForm={closeForm} course_id={id} data={commentData} />)
 
                                 : (
                                     <>
-                                    {(!current_user_comment) ? (<div className='no-review-found'>
+                                        {(!current_user_comment) ? (<div className='no-review-found'>
                                             <h4>You haven't completed this course.</h4><Button type="default" text="Mark as Completed" onClickHandeler={() => setIsFormOpen(true)} />
-                                        </div>) :(<div>
-                                            <UserReview  commentDetails={current_user_comment}/>
+                                        </div>) : (<div>
+                                            <UserReview commentDetails={current_user_comment} openFormWithData={openFormWithData} />
                                         </div>)}
-                                        
+
                                     </>
                                 )
 
@@ -120,6 +130,7 @@ const CourseDetails = () => {
 
     )
 }
+
 
 
 export default CourseDetails;
