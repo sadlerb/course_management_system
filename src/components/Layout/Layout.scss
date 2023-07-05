@@ -1,0 +1,7 @@
+main{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    .content{
+        margin: 2rem;
+    }
+}
