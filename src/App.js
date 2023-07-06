@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import ManageCourses from "./pages/ManageCourses/ManageCourses.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
             <Route path="/login" element={<Login />} />
               <Route path="/" element={<Layout />}>
@@ -23,7 +23,7 @@ function App() {
               </Route>
               <Route path="*" element={<ErrorPage />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </UserProvider>
     </div>
   );
