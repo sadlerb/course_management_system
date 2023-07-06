@@ -1,0 +1,31 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="30" height="30" fill="#1E1E1E"/>
+<g id="Course " clip-path="url(#clip0_0_1)">
+<g id="activity 06">
+<path id="container" d="M539.319 -355H-130.25C-135.116 -355 -139.06 -351.929 -139.06 -348.14V118.361C-139.06 122.152 -135.116 125.222 -130.25 125.222H539.319C544.187 125.222 548.13 122.152 548.13 118.361V-348.14C548.13 -351.929 544.187 -355 539.319 -355Z" fill="#E6F1FE" stroke="url(#paint0_linear_0_1)" stroke-width="2"/>
+</g>
+<g id="User Comment">
+<g id="Wireframes - flow_user" clip-path="url(#clip1_0_1)">
+<g id="flow_user">
+<g id="flow user">
+<path id="container_2" d="M15 30C23.2843 30 30 23.2843 30 15C30 6.71572 23.2843 0 15 0C6.71572 0 0 6.71572 0 15C0 23.2843 6.71572 30 15 30Z" fill="black"/>
+<path id="user" fill-rule="evenodd" clip-rule="evenodd" d="M24.3905 23.625C22.0601 26.1608 18.7159 27.75 15.0004 27.75C11.285 27.75 7.9407 26.1608 5.61035 23.625C7.94077 21.0892 11.285 19.5 15.0004 19.5C18.7159 19.5 22.0601 21.0892 24.3905 23.625ZM15.0004 16.5C17.4857 16.5 19.5004 14.4853 19.5004 12C19.5004 9.51473 17.4857 7.5 15.0004 7.5C12.5152 7.5 10.5004 9.51473 10.5004 12C10.5004 14.4853 12.5152 16.5 15.0004 16.5Z" fill="#DD4D1E"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_1" x1="204.535" y1="-355" x2="204.535" y2="125.222" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0073FC"/>
+<stop offset="0.823023" stop-color="#556AFE"/>
+<stop offset="1" stop-color="#8266FF"/>
+</linearGradient>
+<clipPath id="clip0_0_1">
+<rect width="696" height="456" fill="white" transform="translate(-143 -355)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="30" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg>
