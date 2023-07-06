@@ -23,3 +23,5 @@ Avaliable users
   department:webdev
 }
 ```
+
+If there are issues. You can run the application locally by calling npm start in the root and server directorys

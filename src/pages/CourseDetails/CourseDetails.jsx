@@ -83,7 +83,7 @@ const CourseDetails = () => {
                 <div className="course-container">
                     <div className="course-detail-header">
                         <h1>{courseDetails.title}</h1>
-                        <div className="course-rating"><span>{courseDetails.rating}</span><RatingStar /></div>
+                        <div className="course-rating"><span>{courseDetails.rating.toFixed(2)}</span><RatingStar /></div>
                     </div>
 
                     <div className="course-grid">
