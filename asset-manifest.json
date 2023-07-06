@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/course_management_system/static/css/main.1e54844d.css",
-    "main.js": "/course_management_system/static/js/main.3c6854e8.js",
+    "main.js": "/course_management_system/static/js/main.9210e2a6.js",
     "static/js/787.7a7cdbcb.chunk.js": "/course_management_system/static/js/787.7a7cdbcb.chunk.js",
     "static/media/logo.svg": "/course_management_system/static/media/logo.3eb52eb8e771adb7751d2fb0c09709e6.svg",
     "static/media/comment_user.svg": "/course_management_system/static/media/comment_user.166022fd3e6b39cf4e5287101842c61b.svg",
@@ -20,11 +20,11 @@
     "static/media/full.svg": "/course_management_system/static/media/full.fb9652d2a15e3ea385029f3e2f5f371d.svg",
     "static/media/add.svg": "/course_management_system/static/media/add.a31034ddc7668247b597fe5c1adad7ae.svg",
     "main.1e54844d.css.map": "/course_management_system/static/css/main.1e54844d.css.map",
-    "main.3c6854e8.js.map": "/course_management_system/static/js/main.3c6854e8.js.map",
+    "main.9210e2a6.js.map": "/course_management_system/static/js/main.9210e2a6.js.map",
     "787.7a7cdbcb.chunk.js.map": "/course_management_system/static/js/787.7a7cdbcb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1e54844d.css",
-    "static/js/main.3c6854e8.js"
+    "static/js/main.9210e2a6.js"
   ]
 }
