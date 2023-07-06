@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getCourses = async () => {
-            const response = await fetch(`http://localhost:5050/courses/department/${currentUser.department}/role/${currentUser.role}`);
+            const response = await fetch(`https://course-management-6osz.onrender.com/courses/department/${currentUser.department}/role/${currentUser.role}`);
             if (!response.ok) {
                 console.log(response.statusText);
                 setIsLoading(false);

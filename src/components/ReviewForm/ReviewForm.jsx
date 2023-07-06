@@ -28,7 +28,7 @@ const ReviewForm = ({ closeForm, course_id, disabled, data }) => {
         const userComment = { ...input, user_name: currentUser.name, user_id: currentUser._id, date_created: currentDate }
 
         if (isUpdateMode) {
-            await fetch(`http://localhost:5050/courses/${course_id}/comment/${data.user_id}`, {
+            await fetch(`https://course-management-6osz.onrender.com/courses/${course_id}/comment/${data.user_id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const ReviewForm = ({ closeForm, course_id, disabled, data }) => {
                 return;
             });
         } else {
-            await fetch(`http://localhost:5050/courses/${course_id}/comment`, {
+            await fetch(`https://course-management-6osz.onrender.com/courses/${course_id}/comment`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

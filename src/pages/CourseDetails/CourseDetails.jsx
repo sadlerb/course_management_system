@@ -51,7 +51,7 @@ const CourseDetails = () => {
 
 
     const getCourse = async () => {
-        const response = await fetch(`http://localhost:5050/courses/${id}`);
+        const response = await fetch(`https://course-management-6osz.onrender.com/courses/${id}`);
         if (!response.ok) {
             console.log(response.statusText);
             setIsLoading(false)

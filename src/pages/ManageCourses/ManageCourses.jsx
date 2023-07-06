@@ -37,7 +37,7 @@ const ManageCourses = () => {
 
     const getData = async () => {
         setIsLoading(true)
-        const courses = await fetch("http://localhost:5050/courses");
+        const courses = await fetch("https://course-management-6osz.onrender.com/courses");
         if (!courses.ok) {
             console.log(courses.statusText);
             setIsLoading(false);
@@ -46,7 +46,7 @@ const ManageCourses = () => {
         const courseData = await courses.json();
         setCourseList(courseData);
 
-        const departments = await fetch("http://localhost:5050/departments");
+        const departments = await fetch("https://course-management-6osz.onrender.com/departments");
         if (!departments.ok) {
             console.log(departments.statusText);
             setIsLoading(false);
@@ -76,7 +76,7 @@ const ManageCourses = () => {
         event.preventDefault();
         const deleteCourses = async () => {
 
-            await fetch("http://localhost:5050/courses", {
+            await fetch("https://course-management-6osz.onrender.com/courses", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const ManageCourses = () => {
         }
 
         const deleteDepartments = async () => {
-            await fetch("http://localhost:5050/departments", {
+            await fetch("https://course-management-6osz.onrender.com/departments", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

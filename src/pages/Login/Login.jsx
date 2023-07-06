@@ -15,7 +15,7 @@ const Login = () => {
     const submitAuthData = async (event) => {
         event.preventDefault();
         setIsLoading(true)
-        const response = await fetch(`http://localhost:5050/auth`, {
+        const response = await fetch(`https://course-management-6osz.onrender.com/auth`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

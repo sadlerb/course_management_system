@@ -47,7 +47,7 @@ const CourseForm = ({ closeForm, data, getData, mode, departmentData }) => {
         event.preventDefault();
 
         const addData = async () => {
-            await fetch(`http://localhost:5050/${mode}`, {
+            await fetch(`https://course-management-6osz.onrender.com/${mode}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const CourseForm = ({ closeForm, data, getData, mode, departmentData }) => {
 
         }
         const editData = async () => {
-            await fetch(`http://localhost:5050/${mode}/${data._id}`, {
+            await fetch(`https://course-management-6osz.onrender.com/${mode}/${data._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
